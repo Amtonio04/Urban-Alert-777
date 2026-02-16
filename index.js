@@ -1,32 +1,21 @@
 require('dotenv').config();
 //Tools
 const express = require('express');
-const mongoose = require('mongoose');
 const {createClient}=require('@supabase/supabase-js');
+const connectDB = require('./src/config/databese');
+const reportesRoutes = require('./src/routes/reportes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-//Supabase connection
-const supabaseClient = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+//DB
+connectDB();
 
-//MongoDB connection
-mongoose.connect(process.env.MONGO_URI)
-        .then((()=> console.log('Connected to MongoDB')))
-        .catch(err => console.error('MongoDB connection error:', err));
+//Middleware
+app.use('/api/reportes', reportesRoutes);
 
-//Routes
-app.get('/', async (req, res) => { 
-    //Supabase healthcheck
-    const {data, error} = await supabaseClient.from('profiles').select('*').limit(1);
-
-    res.json({
-        message:'Welcome to UrbanAlert API',
-        database_nosql:mongoose.connection.readyState === 1 ? 'Connection ready' : 'Fail connection',
-        supabase_auth:error ? 'Error Connection' : 'Online'
-    })
-});
 
 app.listen(PORT, () => {
     console.log(`Port connection running in : http://localhost:${PORT}`);
 })
+
