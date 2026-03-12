@@ -21,13 +21,6 @@ node index.js
 - MongoDB (mongoose)
 - JSON Web Tokens (`jsonwebtoken`)
 
-## Folder Structure (N-Layer pattern)
-
-- `src/routes` - HTTP route definitions
-- `src/controllers` - Request handlers / business logic
-- `src/models` - Mongoose models
-- `src/middlewares` - Authentication and middleware
-- `src/config` - DB connection and configuration
 
 ## Main Endpoints
 
@@ -40,8 +33,3 @@ Auth:
 Reports (example routes already present):
 - GET `/api/reportes/reportes` — protected
 - POST `/api/reportes/CreateReporte` — protected
-
-## Notes
-
-- Do not commit real credentials. Use `.env.template` for examples.
-- Token expiration: 1 hour (configured in `src/helpers/help.js`).
