@@ -16,7 +16,4 @@ if (auth && auth.login) {
 // Get all users (protected)
 router.get('/users', auth, Usuariocontroller.getUsers);
 
-// Get single user by id (protected)
-router.get('/users/:id', auth, Usuariocontroller.getUser);
-
 module.exports = router;
