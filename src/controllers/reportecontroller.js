@@ -1,6 +1,6 @@
-const reporteService = require('../models/reporte');
+const reporte = require('../models/reporte');
 
-exports.getreportes = async (req, res) => {
+exports.getReportes = async (req, res) => {
     try {
         const reportes = await reporte.find();
         res.json(reportes);
@@ -10,7 +10,7 @@ exports.getreportes = async (req, res) => {
     }
 };
 
-exports.createreporte = async (req, res) => {
+exports.createReporte = async (req, res) => {
     try {
          const { title, description, Ubicacion } = req.body;
 

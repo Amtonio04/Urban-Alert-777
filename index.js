@@ -3,7 +3,8 @@ require('dotenv').config();
 const express = require('express');
 const {createClient}=require('@supabase/supabase-js');
 const connectDB = require('./src/config/databese');
-const reportesRoutes = require('./src/routes/reportes');
+//const reportesRoutes = require('./src/routes/reportes');
+const authRoutes = require('./src/routes/auth');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,7 +13,9 @@ const PORT = process.env.PORT || 3000;
 connectDB();
 
 //Middleware
-app.use('/api/reportes', reportesRoutes);
+app.use(express.json());
+//app.use('/api/reportes', reportesRoutes);
+app.use('/api/auth', authRoutes);
 
 
 app.listen(PORT, () => {
